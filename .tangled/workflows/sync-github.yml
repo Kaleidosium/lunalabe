@@ -25,4 +25,4 @@ steps:
       ssh-keyscan -t ed25519 github.com > "$KNOWN"
       export GIT_SSH_COMMAND="ssh -i $KEY -o IdentitiesOnly=yes -o UserKnownHostsFile=$KNOWN"
       git remote add github git@github.com:Kaleidosium/lunalabe.git
-      git push github HEAD:refs/heads/main
+      git push --force github HEAD:refs/heads/main
