@@ -1,0 +1,28 @@
+---
+# Mirror the canonical Tangled main branch to GitHub without rewriting history.
+when:
+  - event: ["push"]
+    branch: ["main"]
+
+engine: "nixery"
+
+clone:
+  depth: 9001
+
+dependencies:
+  nixpkgs:
+    - git
+    - openssh
+
+steps:
+  - name: push main to github
+    command: |
+      grep -q '^root:' /etc/passwd 2>/dev/null || echo 'root:x:0:0:root:/root:/bin/sh' >> /etc/passwd
+      KEY="$(mktemp)"
+      KNOWN="$(mktemp)"
+      printf '%s\n' "$GITHUB_DEPLOY_KEY" > "$KEY"
+      chmod 600 "$KEY"
+      ssh-keyscan -t ed25519 github.com > "$KNOWN"
+      export GIT_SSH_COMMAND="ssh -i $KEY -o IdentitiesOnly=yes -o UserKnownHostsFile=$KNOWN"
+      git remote add github git@github.com:Kaleidosium/lunalabe.git
+      git push github HEAD:refs/heads/main
