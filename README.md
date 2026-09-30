@@ -2,6 +2,12 @@
 
 lunalabe is a FastAPI-based web service for lunar phase, position, and event calculations. It uses Skyfield for astronomy, derives the timezone from the query coordinates, and applies rate limiting and caching.
 
+## Repository and deployment
+
+The canonical repository is on [Tangled](https://tangled.org/kaleidosium.my.id/lunalabe/). It is mirrored to GitHub.
+
+The official deploy is at <https://lunalabe.kaleidosium.my.id/docs>. Please self-host it if you want higher rate limits or a guarantee it stays up. I cannot pay much for hosting the official API.
+
 ## Features
 
 - Lunar phase, position, rise/set, and eclipse calculations
@@ -23,4 +29,4 @@ Set environment variables to adjust rate limiting and cache TTL:
 
 ## License
 
-MIT
+This project is licensed under the [MIT License](LICENSE).
