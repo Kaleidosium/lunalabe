@@ -1,0 +1,23 @@
+[project]
+name = "lunalabe"
+version = "0.1.0"
+description = "FastAPI service for lunar phase, position, and event calculations"
+readme = "README.md"
+requires-python = ">=3.11"
+dependencies = [
+    "fastapi>=0.142.1",
+    "pydantic>=2.13.5",
+    "skyfield>=1.55",
+    "timezonefinder>=9,<10",
+    "uvicorn>=0.54.0",
+]
+
+[dependency-groups]
+dev = ["pytest>=9.1.1", "ruff>=0.16.9", "vulture>=2.16"]
+
+[tool.ruff]
+extend-exclude = [".agents"]
+
+[tool.pyrefly]
+project-includes = ["**/*.py*", "**/*.ipynb"]
+search-path = ["."]
